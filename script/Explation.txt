@@ -1,0 +1,8 @@
+コマンドライン実行例：detect_and_clutter.py
+
+# まずスクリプトがあるディレクトリに移動
+cd ~/ZemiA/script
+python your_detection_script.py image_cf2b64.jpg
+
+実行例: 閾値を0.4以上でJsonファイル名とパスを指定し保存
+python3 detect_and_clutter.py ../photo/sample1.jpg --conf 0.4 --show_window --output_log ~/ZemiA/Json/sample1.Json
