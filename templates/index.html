@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>机の散らかり可視化</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 30px;
+      color: #333;
+    }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid #ccc;
+    }
+
+    .score-box {
+      font-size: 1.5em;
+      color: #16a085;
+      text-align: center;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div>
+      {% for category, message in messages %}
+        <div style="padding: 10px; margin-bottom: 10px; border-radius: 5px;
+                    background-color: {{ 'lightgreen' if category == 'success' else 'salmon' }};
+                    color: #333;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+  <div class="section">
+    <h1>机の散らかり可視化システム</h1>
+    <p class="score-box">現在のスコア：<strong>{{ score }}</strong></p>
+    <form action="/refresh" method="get">
+      <button class="btn">データを更新</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>🔲 机の状態（物体と中心）</h2>
+    <canvas id="deskCanvas" width="500" height="300"></canvas>
+  </div>
+
+  <div class="section">
+    <h2>📈 スコアの履歴</h2>
+    <canvas id="scoreChart" width="500" height="250"></canvas>
+  </div>
+
+<script>
+  const canvasWidth = 500;
+  const canvasHeight = 300;
+
+  const objects = {{ objects | tojson }};
+  const history = {{ history | tojson }};
+  const imageWidth = {{ image_width }};
+  const imageHeight = {{ image_height }};
+
+  const MAX_POINTS = 10;
+  const recent = history.slice(-MAX_POINTS);
+
+  // ===== スケーリング係数の計算 =====
+  const scaleX = canvasWidth / imageWidth;
+  const scaleY = canvasHeight / imageHeight;
+  const scale = Math.min(scaleX, scaleY);
+
+  // ===== キャンバスに描画 =====
+  const canvas = document.getElementById("deskCanvas");
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = "#f0f0f0";
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+  objects.forEach(obj => {
+    const x = obj.x * scale;
+    const y = obj.y * scale;
+    const w = obj.width * scale;
+    const h = obj.height * scale;
+
+    ctx.strokeStyle = "red";
+    ctx.strokeRect(x, y, w, h);
+
+    ctx.fillStyle = "blue";
+    ctx.beginPath();
+    ctx.arc(x + w / 2, y + h / 2, 4, 0, 2 * Math.PI);
+    ctx.fill();
+  });
+
+  // ===== グラフ表示 =====
+  const times = recent.map(h => h.timestamp);
+  const scores = recent.map(h => h.score);
+
+  new Chart(document.getElementById("scoreChart").getContext("2d"), {
+    type: 'line',
+    data: {
+      labels: times,
+      datasets: [{
+        label: "散らかりスコア",
+        data: scores,
+        borderColor: "#2980b9",
+        backgroundColor: "#3498db",
+        fill: false,
+        tension: 0.2,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { stepSize: 10 }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
