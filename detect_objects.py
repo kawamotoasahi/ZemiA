@@ -6,7 +6,7 @@ import cv2
 model = YOLO('yolov8n.pt')
 
 # 検出したい画像のパス
-image_path = '/sample1.jpg' # ここにご自身の画像のパスを設定してください
+image_path = 'sample1.jpg' # ここにご自身の画像のパスを設定してください
 
 # 画像を読み込む
 img = cv2.imread(image_path)
