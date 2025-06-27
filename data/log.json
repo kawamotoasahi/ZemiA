@@ -1,41 +1,45 @@
 {
   "score": 25.0,
   "timestamp": "2025-06-20 14:31:52",
-  "image_width": 1108,
-  "image_height": 1477,
+  "image_width": 1477,
+  "image_height": 1108,
   "objects": [
     {
-      "x": 186,
-      "y": 1040,
-      "width": 181,
-      "height": 113
+      "x": 1040,
+      "y": 741,
+      "width": 113,
+      "height": 181
     },
     {
-      "x": 518,
-      "y": 1048,
-      "width": 553,
-      "height": 428
+      "x": 1048,
+      "y": 37,
+      "width": 428,
+      "height": 553
     },
     {
-      "x": 39,
-      "y": 407,
-      "width": 614,
-      "height": 634
+      "x": 407,
+      "y": 455,
+      "width": 634,
+      "height": 614
     },
     {
-      "x": 987,
-      "y": 463,
-      "width": 120,
-      "height": 960
+      "x": 463,
+      "y": 1,
+      "width": 960,
+      "height": 120
     },
     {
-      "x": 972,
-      "y": 0,
-      "width": 135,
-      "height": 732
+      "x": 0,
+      "y": 1,
+      "width": 732,
+      "height": 135
     }
   ],
   "history": [
+    {
+      "timestamp": "2025-06-20 09:30",
+      "score": 63
+    },
     {
       "timestamp": "2025-06-20 10:00",
       "score": 60
@@ -65,11 +69,7 @@
       "score": 30
     },
     {
-      "timestamp": "2025-06-20 13:30",
-      "score": 27
-    },
-    {
-      "timestamp": "2025-06-20 14:10:20",
+      "timestamp": "2025-06-20 14:10",
       "score": 25
     },
     {
