@@ -16,7 +16,8 @@ def index():
             "objects": [],
             "image_width": 640,
             "image_height": 480,
-            "history": []
+            "history": [],
+            "timestamp": ""
         }
 
     return render_template("index.html",
@@ -24,8 +25,10 @@ def index():
         objects=data["objects"],
         history=data["history"],
         image_width=data.get("image_width", 640),
-        image_height=data.get("image_height", 480)
+        image_height=data.get("image_height", 480),
+        timestamp=data.get("timestamp", "")  # ✅ これを追加
     )
+
 
 
 @app.route("/refresh")

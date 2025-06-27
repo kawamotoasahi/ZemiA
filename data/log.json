@@ -1,80 +1,25 @@
 {
-  "score": 25.0,
-  "timestamp": "2025-06-20 14:31:52",
-  "image_width": 1477,
-  "image_height": 1108,
+  "score": 25,
+  "timestamp": "2025-06-20 14:10:20",
+  "image_width": 1280,
+  "image_height": 960,
   "objects": [
-    {
-      "x": 1040,
-      "y": 741,
-      "width": 113,
-      "height": 181
-    },
-    {
-      "x": 1048,
-      "y": 37,
-      "width": 428,
-      "height": 553
-    },
-    {
-      "x": 407,
-      "y": 455,
-      "width": 634,
-      "height": 614
-    },
-    {
-      "x": 463,
-      "y": 1,
-      "width": 960,
-      "height": 120
-    },
-    {
-      "x": 0,
-      "y": 1,
-      "width": 732,
-      "height": 135
-    }
+    { "x": 186, "y": 10, "width": 181, "height": 113 },
+    { "x": 518, "y": 148, "width": 553, "height": 428 },
+    { "x": 39, "y": 40, "width": 614, "height": 634 },
+    { "x": 987, "y": 463, "width": 120, "height": 460 },
+    { "x": 92, "y": 0, "width": 135, "height": 732 }
   ],
   "history": [
-    {
-      "timestamp": "2025-06-20 09:30",
-      "score": 63
-    },
-    {
-      "timestamp": "2025-06-20 10:00",
-      "score": 60
-    },
-    {
-      "timestamp": "2025-06-20 10:30",
-      "score": 55
-    },
-    {
-      "timestamp": "2025-06-20 11:00",
-      "score": 50
-    },
-    {
-      "timestamp": "2025-06-20 11:30",
-      "score": 45
-    },
-    {
-      "timestamp": "2025-06-20 12:00",
-      "score": 40
-    },
-    {
-      "timestamp": "2025-06-20 12:30",
-      "score": 35
-    },
-    {
-      "timestamp": "2025-06-20 13:00",
-      "score": 30
-    },
-    {
-      "timestamp": "2025-06-20 14:10",
-      "score": 25
-    },
-    {
-      "timestamp": "2025-06-20 14:31:52",
-      "score": 25.0
-    }
+    { "timestamp": "2025-06-20 09:00", "score": 65 },
+    { "timestamp": "2025-06-20 09:30", "score": 63 },
+    { "timestamp": "2025-06-20 10:00", "score": 60 },
+    { "timestamp": "2025-06-20 10:30", "score": 55 },
+    { "timestamp": "2025-06-20 11:00", "score": 50 },
+    { "timestamp": "2025-06-20 11:30", "score": 45 },
+    { "timestamp": "2025-06-20 12:00", "score": 40 },
+    { "timestamp": "2025-06-20 12:30", "score": 35 },
+    { "timestamp": "2025-06-20 13:00", "score": 30 },
+    { "timestamp": "2025-06-20 14:10", "score": 25 }
   ]
 }

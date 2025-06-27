@@ -28,7 +28,6 @@
 
     .score-box {
       font-size: 1.5em;
-      color: #16a085;
       text-align: center;
     }
 
@@ -47,6 +46,26 @@
     .btn:hover {
       background-color: #2980b9;
     }
+
+    .notice {
+      text-align: center;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .alert {
+      background-color: #fdecea;
+      color: #c0392b;
+      border: 1px solid #e74c3c;
+    }
+
+    .praise {
+      background-color: #eafaf1;
+      color: #27ae60;
+      border: 1px solid #2ecc71;
+    }
   </style>
 </head>
 <body>
@@ -63,12 +82,22 @@
       {% endfor %}
     </div>
   {% endif %}
-{% endwith %}
-
+  {% endwith %}
 
   <div class="section">
     <h1>机の散らかり可視化システム</h1>
-    <p class="score-box">現在のスコア：<strong>{{ score }}</strong></p>
+    <p class="score-box">
+      現在のスコア：<strong id="scoreValue">{{ score }}</strong>
+    </p>
+    <p style="text-align:center; margin-top: 5px;">
+      更新時刻：<span id="timestamp">{{ timestamp }}</span>
+    </p>
+    <div id="alertBox" class="notice alert" style="display:none;">
+      ⚠ 散らかりすぎです！片づけをおすすめします。
+    </div>
+    <div id="praiseBox" class="notice praise" style="display:none;">
+      🎉 きれいに保たれています！すばらしい！
+    </div>
     <form action="/refresh" method="get">
       <button class="btn">データを更新</button>
     </form>
@@ -92,18 +121,16 @@
   const history = {{ history | tojson }};
   const imageWidth = {{ image_width }};
   const imageHeight = {{ image_height }};
-
+  const score = {{ score }};
   const MAX_POINTS = 10;
   const recent = history.slice(-MAX_POINTS);
 
-  // ===== スケーリング係数の計算 =====
-  const scaleX = canvasWidth / imageWidth;
-  const scaleY = canvasHeight / imageHeight;
-  const scale = Math.min(scaleX, scaleY);
-
-  // ===== キャンバスに描画 =====
   const canvas = document.getElementById("deskCanvas");
   const ctx = canvas.getContext("2d");
+
+  const displayWidth = imageWidth >= imageHeight ? imageWidth : imageHeight;
+  const displayHeight = imageWidth >= imageHeight ? imageHeight : imageWidth;
+  const scale = Math.min(canvasWidth / displayWidth, canvasHeight / displayHeight);
 
   ctx.fillStyle = "#f0f0f0";
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
@@ -123,10 +150,21 @@
     ctx.fill();
   });
 
-  // ===== グラフ表示 =====
+  // スコア色分け
+  const scoreEl = document.getElementById("scoreValue");
+  if (score < 40) {
+    scoreEl.style.color = "#27ae60"; // 緑
+    document.getElementById("praiseBox").style.display = "block";
+  } else if (score < 70) {
+    scoreEl.style.color = "#f39c12"; // オレンジ
+  } else {
+    scoreEl.style.color = "#e74c3c"; // 赤
+    document.getElementById("alertBox").style.display = "block";
+  }
+
+  // 折れ線グラフ
   const times = recent.map(h => h.timestamp);
   const scores = recent.map(h => h.score);
-
   new Chart(document.getElementById("scoreChart").getContext("2d"), {
     type: 'line',
     data: {
@@ -144,11 +182,7 @@
     options: {
       responsive: true,
       scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: { stepSize: 10 }
-        }
+        y: { beginAtZero: true, max: 100, ticks: { stepSize: 10 } }
       }
     }
   });
