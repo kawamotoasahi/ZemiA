@@ -1,0 +1,147 @@
+{
+    "score": 100,
+    "timestamp": "2025-07-04 14:19:45",
+    "image_path": "data/images/sample.jpg",
+    "objects": [
+        {
+            "class_name": "mouse",
+            "confidence": 0.9195,
+            "bbox": [
+                847,
+                587,
+                1042,
+                852
+            ]
+        },
+        {
+            "class_name": "laptop",
+            "confidence": 0.8728,
+            "bbox": [
+                1148,
+                1198,
+                1975,
+                1912
+            ]
+        },
+        {
+            "class_name": "person",
+            "confidence": 0.87,
+            "bbox": [
+                3189,
+                305,
+                4028,
+                1472
+            ]
+        },
+        {
+            "class_name": "laptop",
+            "confidence": 0.837,
+            "bbox": [
+                972,
+                314,
+                1845,
+                1104
+            ]
+        },
+        {
+            "class_name": "cell phone",
+            "confidence": 0.8087,
+            "bbox": [
+                2182,
+                483,
+                2344,
+                807
+            ]
+        },
+        {
+            "class_name": "person",
+            "confidence": 0.7489,
+            "bbox": [
+                417,
+                1683,
+                1592,
+                2112
+            ]
+        },
+        {
+            "class_name": "book",
+            "confidence": 0.699,
+            "bbox": [
+                2386,
+                276,
+                2939,
+                861
+            ]
+        },
+        {
+            "class_name": "dining table",
+            "confidence": 0.6982,
+            "bbox": [
+                159,
+                162,
+                3894,
+                2077
+            ]
+        },
+        {
+            "class_name": "laptop",
+            "confidence": 0.6706,
+            "bbox": [
+                3002,
+                1128,
+                3551,
+                1738
+            ]
+        },
+        {
+            "class_name": "book",
+            "confidence": 0.6258,
+            "bbox": [
+                2111,
+                1142,
+                2782,
+                1773
+            ]
+        },
+        {
+            "class_name": "laptop",
+            "confidence": 0.615,
+            "bbox": [
+                261,
+                874,
+                814,
+                1539
+            ]
+        },
+        {
+            "class_name": "person",
+            "confidence": 0.6077,
+            "bbox": [
+                418,
+                1690,
+                2120,
+                2118
+            ]
+        },
+        {
+            "class_name": "cell phone",
+            "confidence": 0.5993,
+            "bbox": [
+                351,
+                487,
+                731,
+                723
+            ]
+        },
+        {
+            "class_name": "chair",
+            "confidence": 0.5435,
+            "bbox": [
+                2323,
+                1,
+                3196,
+                304
+            ]
+        }
+    ]
+}
